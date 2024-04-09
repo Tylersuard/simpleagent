@@ -2,7 +2,8 @@
 A simple framework for building agents and agent swarms.  Get started in 2 lines of code.
 
 Example:
-```import simpleagent
+```
+import simpleagent
 from utils import SendToOpenai
 
 oai = SendToOpenai(endpoint=None, api_key="YOUR_OPENAI_API_KEY")
