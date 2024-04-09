@@ -2,9 +2,6 @@ from utils import SendToOpenai, SendToGroq, SendToLLM
 from random import randint
 from agent_names import agent_firstnames,agent_lastnames
 
-openai = SendToOpenai(endpoint=None, api_key="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")
-groq = SendToGroq(endpoint=None, api_key="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")
-
 class Agent:
     def __init__(self, instructions, client: SendToLLM, number_of_turns = 5):
         self.instructions = instructions
