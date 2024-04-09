@@ -31,15 +31,13 @@ agent_swarm = simpleagent.Swarm(instructions="Write lyrics for a song called 'Da
 ```
 
 # Features
-
-    Easy to Use: SimpleAgent's API is designed for simplicity, making it accessible for developers of all skill levels.
-    Flexible: Tailor your agents or swarms to perform a wide range of tasks, from creative writing to data analysis.
-    Scalable: Easily scale up your agent-based solutions by managing multiple agents as a cohesive swarm.
+- Easy to Use: SimpleAgent's API is designed for simplicity, making it accessible for developers of all skill levels.
+- Flexible: Tailor your agents or swarms to perform a wide range of tasks, from creative writing to data analysis.
+- Scalable: Easily scale up your agent-based solutions by managing multiple agents as a cohesive swarm.
 
 # Requirements
-
-    Python 3.6+
-    OpenAI API key for utilizing GPT-powered agents
+Python 3.6+
+OpenAI (or Groq) API key for utilizing GPT-powered agents
 
 # Contributions
 Contributions are welcome! If you have suggestions for improvements or bug fixes, please feel free to submit a pull request or open an issue.
