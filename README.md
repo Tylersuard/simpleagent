@@ -1,4 +1,4 @@
-![Screenshot of the logo for SimpleAgent.](https://github.com/Tylersuard/simpleagent/blob/main/SimpleAgent%20logo2.png)
+![Screenshot of the logo for SimpleAgent.](https://github.com/Tylersuard/simpleagent/blob/main/SimpleAgent%20logo2%20crop.png)
 # SimpleAgent
 
 ## Overview
