@@ -1,5 +1,5 @@
 from random import randint
-from agent_names import agent_firstnames,agent_lastnames
+from simpleagent.agent_names import agent_firstnames,agent_lastnames
 
 class Agent:
     def __init__(self, instructions, client: SendToLLM, number_of_turns = 5):
