@@ -1,4 +1,3 @@
-from utils import SendToOpenai, SendToGroq, SendToLLM
 from random import randint
 from agent_names import agent_firstnames,agent_lastnames
 
