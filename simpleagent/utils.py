@@ -1,6 +1,5 @@
 from abc import ABC
 import openai
-import requests
 from groq import Groq
 
 
@@ -12,8 +11,10 @@ class MODELS:
 class SendToLLM(ABC):
     def __init__(self, endpoint, api_key, model):
         pass
+
     def send(self, data):
         pass
+
 
 class SendToOpenai(SendToLLM):
     def __init__(self, endpoint, api_key, model=MODELS.GPT_4_PREVIEW):
@@ -33,21 +34,22 @@ class SendToOpenai(SendToLLM):
         )
         return response.choices[0].message.content
 
+
 class SendToGroq(SendToLLM):
     def __init__(self, endpoint, api_key, model=MODELS.MIXTRAL_8X_7B):
-        self.api_key=api_key
-        self.model=model
+        self.api_key = api_key
+        self.model = model
 
     def send(self, message):
         client = Groq(api_key=self.api_key)
         chat_completion = client.chat.completions.create(
-    messages=[
-        {
-            "role": "user",
-            "content": f"{message}",
-        }
-    ],
-    model=self.model,
-)
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"{message}",
+                }
+            ],
+            model=self.model,
+        )
 
         return chat_completion.choices[0].message.content
