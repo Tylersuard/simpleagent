@@ -12,7 +12,7 @@ class SendToLLM(ABC):
     def __init__(self, endpoint, api_key, model):
         pass
 
-    def send(self, data):
+    def send(self, message):
         pass
 
 
@@ -23,10 +23,10 @@ class SendToOpenai(SendToLLM):
         self.api_key = api_key
         self.endpoint = endpoint
         self.model = model
+        self.client = openai.OpenAI(api_key=self.api_key)
 
     def send(self, message):
-        client = openai.OpenAI(api_key=self.api_key)
-        response = client.chat.completions.create(
+        response = self.client.chat.completions.create(
             model=self.model,
             messages=[{"role": "system", "content": message}],
             temperature=0.3,
@@ -39,10 +39,10 @@ class SendToGroq(SendToLLM):
     def __init__(self, endpoint, api_key, model=MODELS.MIXTRAL_8X_7B):
         self.api_key = api_key
         self.model = model
+        self.client = Groq(api_key=self.api_key)
 
     def send(self, message):
-        client = Groq(api_key=self.api_key)
-        chat_completion = client.chat.completions.create(
+        response = self.client.chat.completions.create(
             messages=[
                 {
                     "role": "user",
@@ -52,4 +52,4 @@ class SendToGroq(SendToLLM):
             model=self.model,
         )
 
-        return chat_completion.choices[0].message.content
+        return response.choices[0].message.content
