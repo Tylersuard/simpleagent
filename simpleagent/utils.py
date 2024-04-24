@@ -1,4 +1,5 @@
 from abc import ABC
+
 import openai
 from groq import Groq
 
@@ -12,7 +13,7 @@ class SendToLLM(ABC):
     def __init__(self, endpoint, api_key, model):
         pass
 
-    def send(self, message):
+    def send(self, message, system="You are a helpful assistant."):
         pass
 
 
@@ -25,10 +26,13 @@ class SendToOpenai(SendToLLM):
         self.model = model
         self.client = openai.OpenAI(api_key=self.api_key)
 
-    def send(self, message):
+    def send(self, message, system="You are a helpful assistant."):
         response = self.client.chat.completions.create(
             model=self.model,
-            messages=[{"role": "system", "content": message}],
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": message},
+            ],
             temperature=0.3,
             max_tokens=500,
         )
@@ -41,13 +45,14 @@ class SendToGroq(SendToLLM):
         self.model = model
         self.client = Groq(api_key=self.api_key)
 
-    def send(self, message):
+    def send(self, message, system="You are a helpful assistant."):
         response = self.client.chat.completions.create(
             messages=[
+                {"role": "system", "content": system},
                 {
                     "role": "user",
-                    "content": f"{message}",
-                }
+                    "content": message,
+                },
             ],
             model=self.model,
         )
