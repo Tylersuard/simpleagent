@@ -35,7 +35,7 @@ class SendToOpenai(SendToLLM):
                 {"role": "user", "content": message},
             ],
             temperature=0.3,
-            max_tokens=500,
+            max_tokens=800,
         )
 
         if response.choices[0].message.content is None:
