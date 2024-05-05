@@ -2,7 +2,6 @@ from random import randint
 from typing import Optional
 
 from agent_names import agent_firstnames, agent_lastnames
-from constants import PROMPT_GENERATION_PREFIX
 from utils import SendToLLM
 
 
@@ -21,7 +20,12 @@ class Agent:
         return f"{firstname} {lastname}"
 
     def generate_prompt_from_instructions(self, instructions):
-        prompt = self.client.send(message=instructions, system=PROMPT_GENERATION_PREFIX)
+        system_prompt = """You are an administrator.  A user has given instructions for a task that must be completed.
+        You are to generate a prompt that will be given to an AI agent.  The prompt should be generated from the instructions given by the user.
+        The prompt should include instructions, and any other information that is necessary for the AI agent to complete the task.
+        The prompt should be generated in a way that is clear and concise, and should be written in a way that is easy for the AI agent to understand.
+        Please tell the agent to explain its reasoning for each step it takes.  This is the user's instructions: """
+        prompt = self.client.send(message=instructions, system=system_prompt)
         return prompt
 
     def generate_system_instructions(self, is_initial_prompt: bool) -> str:
